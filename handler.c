@@ -31,5 +31,5 @@ int handler(char format_char, va_list args, int count)
 		count += _putchar(format_char);
 	}
 
-	return count;
+	return (count);
 }

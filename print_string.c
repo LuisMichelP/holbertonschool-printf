@@ -22,5 +22,5 @@ int print_string(char *str, int count)
 		count++;
 	}
 
-	return count;
+	return (count);
 }
