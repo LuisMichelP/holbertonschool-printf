@@ -28,23 +28,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				return (-1);
 			
-			if (format[i] == 'c')
-			{
-				count += _putchar(va_arg(args, int));
-			}
-			else if (format[i] == 's')
-			{
-				count = print_string(va_arg(args, char *), count);
-			}
-			else if (format[i] == '%')
-			{
-				count += _putchar('%');
-			}
-			else
-			{
-				count += _putchar('%');
-				count += _putchar(format[i]);
-			}
+			count = handle_specifier(format[i], args, count);
 		}
 		else
 		{
