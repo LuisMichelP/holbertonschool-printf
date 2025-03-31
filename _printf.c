@@ -10,12 +10,11 @@
  * Return: Number of characters printed (excluding null byte)
  */
 
- int _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
     va_list args;
     int i = 0, count = 0;
     char *str;
-    int j;
 
     if (format == NULL)
         return (-1);
@@ -40,8 +39,8 @@
                 if (str == NULL)
                     str = "(null)";
                 
-                int len = _strlen_recursion(str);
-                for (j = 0; j < len; j++)
+                /* Directly use _strlen_recursion in the loop */
+                for (int j = 0; j < _strlen_recursion(str); j++)
                 {
                     _putchar(str[j]);
                     count++;
