@@ -1,10 +1,14 @@
 #include <stdarg.h>
+#include <stdio.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
- * _putchar - Writes a character to stdout
+ * _putchar - writes the character c to stdout
  * @c: The character to print
- * Return: 1 on success, -1 on error
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
@@ -12,14 +16,16 @@ int _putchar(char c)
 }
 
 /**
- * _printf - Custom implementation of printf
- * @format: Format string containing directives
- * Return: Number of characters printed, or -1 on error
+ * _printf - Custom printf function
+ * @format: Format string containing the characters and specifiers
+ *
+ * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
 {
     va_list args;
     int i = 0, count = 0;
+    char *str;
 
     if (format == NULL)
         return (-1);
@@ -31,40 +37,36 @@ int _printf(const char *format, ...)
         if (format[i] == '%')
         {
             i++;
-            if (format[i] == 'c') /* Character */
+            if (format[i] == 'c')
             {
-                char c = va_arg(args, int);
-                _putchar(c);
+                _putchar(va_arg(args, int));
                 count++;
             }
-            else if (format[i] == 's') /* String */
+            else if (format[i] == 's')
             {
-                char *str = va_arg(args, char *);
-                int j = 0;
-
+                str = va_arg(args, char *);
                 if (str == NULL)
                     str = "(null)";
-
-                while (str[j] != '\0')
+                while (*str)
                 {
-                    _putchar(str[j]);
+                    _putchar(*str);
+                    str++;
                     count++;
-                    j++;
                 }
             }
-            else if (format[i] == '%') /* Percent Sign */
+            else if (format[i] == '%')
             {
                 _putchar('%');
                 count++;
             }
-            else /* Invalid Specifier */
+            else
             {
                 _putchar('%');
                 _putchar(format[i]);
                 count += 2;
             }
         }
-        else /* Normal Character */
+        else
         {
             _putchar(format[i]);
             count++;
