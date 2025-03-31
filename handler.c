@@ -25,6 +25,11 @@ int handler(char format_char, va_list args, int count)
 	{
 		count += _putchar('%');
 	}
+	else if (specifier == 'd' || specifier == 'i')
+	{
+		int num = va_arg(args, int);
+		count += print_int(num);
+	}
 	else
 	{
 		count += _putchar('%');
