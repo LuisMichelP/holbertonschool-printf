@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				return (-1);
 			
-			count = handle_specifier(format[i], args, count);
+			count = handler(format[i], args, count);
 		}
 		else
 		{
