@@ -13,6 +13,9 @@
 int print_int(int n)
 {
 	int count = 0;
+	char buffer[10];
+	int i = 0;
+
 	if (n == 0)
 	{
 		count += _putchar('0');
@@ -24,9 +27,6 @@ int print_int(int n)
 		count += _putchar('-');
 		n = -n;
 	}
-
-	char buffer[10];
-	int i = 0;
 		
 	while (n > 0)
 	{
@@ -38,6 +38,6 @@ int print_int(int n)
 	{
 		count += _putchar(buffer[i]);
 	}
-		
+
 	return count;
 }
