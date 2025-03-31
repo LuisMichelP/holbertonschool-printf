@@ -9,6 +9,7 @@
  *
  * Return: Number of characters printed (excluding null byte)
 */
+
 int _printf(const char *format, ...)
 {
 	va_list args;
