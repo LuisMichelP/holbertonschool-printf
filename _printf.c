@@ -1,77 +1,77 @@
-#include <assert.h>
 #include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
 #include <unistd.h>
-#include "main.h"
 
 /**
-  * _printf - printf clone
-  *
-  * @i: array navigation int
-  * @j: array navigation int under conditions
-  *
-  * Return: string length
-  */
+ * _putchar - Writes a character to stdout
+ * @c: The character to print
+ * Return: 1 on success, -1 on error
+ */
+int _putchar(char c)
+{
+    return write(1, &c, 1);
+}
 
+/**
+ * _printf - Custom implementation of printf
+ * @format: Format string containing directives
+ * Return: Number of characters printed, or -1 on error
+ */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i = 0;
-	int j = 0;
-	int count = 0;
-	if (format == NULL)
-	{
-		return (1);
-	}
+    va_list args;
+    int i = 0, count = 0;
 
-	va_start(args, format);
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-			{
-				char character = va_arg(args, int);
-				_putchar(character);
-				count++;
-			}
-			else if (format[i] == 'd')
-			{
-				int integer = va_arg(args, int);
-				if (integer < 0)
-				{
-					count += _putchar('-');
-					integer = -integer;
-				}
-				count += print_number_rec(integer);
-				count++;
-			}
-			else if (format[i] == 's')
-			{
-				char* str = va_arg(args, char*);
-				while(str[j] != '\0')
-				{
-					_putchar(str[j]);
-					count++;
-					j++;
-				}
-			}
-			else if (format[i] == '%')
-			{
-				_putchar('%');
-				count++;
-			}
-			i++;
-		}
-		else
-		{
-			_putchar(format[i]);
-			count++;
-			i++;
-		}
-	}
-	return (count);
+    if (format == NULL)
+        return (-1);
+
+    va_start(args, format);
+
+    while (format[i] != '\0')
+    {
+        if (format[i] == '%')
+        {
+            i++;
+            if (format[i] == 'c') /* Character */
+            {
+                char c = va_arg(args, int);
+                _putchar(c);
+                count++;
+            }
+            else if (format[i] == 's') /* String */
+            {
+                char *str = va_arg(args, char *);
+                int j = 0;
+
+                if (str == NULL)
+                    str = "(null)";
+
+                while (str[j] != '\0')
+                {
+                    _putchar(str[j]);
+                    count++;
+                    j++;
+                }
+            }
+            else if (format[i] == '%') /* Percent Sign */
+            {
+                _putchar('%');
+                count++;
+            }
+            else /* Invalid Specifier */
+            {
+                _putchar('%');
+                _putchar(format[i]);
+                count += 2;
+            }
+        }
+        else /* Normal Character */
+        {
+            _putchar(format[i]);
+            count++;
+        }
+        i++;
+    }
+
+    va_end(args);
+    return (count);
 }
