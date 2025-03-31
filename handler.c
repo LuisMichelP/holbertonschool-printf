@@ -13,23 +13,23 @@
  */
 int handler(char format_char, va_list args, int count)
 {
-    if (format_char == 'c')
-    {
-        count += _putchar(va_arg(args, int));
-    }
-    else if (format_char == 's')
-    {
-        count = print_string(va_arg(args, char *), count);
-    }
-    else if (format_char == '%')
-    {
-        count += _putchar('%');
-    }
-    else
-    {
-        count += _putchar('%');
-        count += _putchar(format_char);
-    }
+	if (format_char == 'c')
+	{
+		count += _putchar(va_arg(args, int));
+	}
+	else if (format_char == 's')
+	{
+		count = print_string(va_arg(args, char *), count);
+	}
+	else if (format_char == '%')
+	{
+		count += _putchar('%');
+	}
+	else
+	{
+		count += _putchar('%');
+		count += _putchar(format_char);
+	}
 
-    return count;
+	return count;
 }
