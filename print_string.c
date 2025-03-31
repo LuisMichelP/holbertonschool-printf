@@ -12,15 +12,15 @@
  */
 int print_string(char *str, int count)
 {
-    if (str == NULL)
-        str = "(null)";
-    
-    while (*str)
-    {
-        _putchar(*str);
-        str++;
-        count++;
-    }
+	if (str == NULL)
+		str = "(null)";
+		
+	while (*str)
+	{
+		_putchar(*str);
+		str++;
+		count++;
+	}
 
-    return count;
+	return count;
 }
