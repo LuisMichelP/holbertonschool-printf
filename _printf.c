@@ -27,7 +27,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 				return (-1);
-			
+
 			count = handler(format[i], args, count);
 		}
 		else
