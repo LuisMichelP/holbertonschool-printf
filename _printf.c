@@ -4,6 +4,18 @@
 #include "main.h"
 
 /**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+    return write(1, &c, 1);
+}
+
+/**
  * _printf - Custom printf function
  * @format: Format string containing the characters and specifiers
  *
@@ -25,10 +37,12 @@ int _printf(const char *format, ...)
         if (format[i] == '%')
         {
             i++;
+            if (format[i] == '\0')
+                return (-1);
+            
             if (format[i] == 'c')
             {
-                _putchar(va_arg(args, int));
-                count++;
+                count += _putchar(va_arg(args, int));
             }
             else if (format[i] == 's')
             {
@@ -44,20 +58,17 @@ int _printf(const char *format, ...)
             }
             else if (format[i] == '%')
             {
-                _putchar('%');
-                count++;
+                count += _putchar('%');
             }
             else
             {
-                _putchar('%');
-                _putchar(format[i]);
-                count += 2;
+                count += _putchar('%');
+                count += _putchar(format[i]);
             }
         }
         else
         {
-            _putchar(format[i]);
-            count++;
+            count += _putchar(format[i]);
         }
         i++;
     }
