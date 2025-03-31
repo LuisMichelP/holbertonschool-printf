@@ -35,15 +35,7 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == 's')
 			{
-				str = va_arg(args, char *);
-				if (str == NULL)
-					str = "(null)";
-				while (*str)
-				{
-					_putchar(*str);
-					str++;
-					count++;
-				}
+				count = print_string(va_arg(args, char *), count);
 			}
 			else if (format[i] == '%')
 			{
