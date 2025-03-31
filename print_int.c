@@ -12,34 +12,32 @@
 
 int print_int(int n)
 {
-    int count = 0;
-    if (n == 0)
-    {
-        count += _putchar('0');
-        return count;
-    }
+	int count = 0;
+	if (n == 0)
+	{
+		count += _putchar('0');
+		return count;
+	}
 
-    if (n < 0)
-    {
-        count += _putchar('-');
-        n = -n; // Make the number positive for printing
-    }
+	if (n < 0)
+	{
+		count += _putchar('-');
+		n = -n;
+	}
 
-    // Calculate and print each digit
-    char buffer[10];
-    int i = 0;
-    
-    while (n > 0)
-    {
-        buffer[i++] = (n % 10) + '0';
-        n /= 10;
-    }
+	char buffer[10];
+	int i = 0;
+		
+	while (n > 0)
+	{
+		buffer[i++] = (n % 10) + '0';
+		n /= 10;
+	}
 
-    // Print the digits in reverse order
-    for (--i; i >= 0; i--)
-    {
-        count += _putchar(buffer[i]);
-    }
-    
-    return count;
+	for (--i; i >= 0; i--)
+	{
+		count += _putchar(buffer[i]);
+	}
+		
+	return count;
 }
