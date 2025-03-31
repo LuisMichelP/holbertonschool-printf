@@ -39,7 +39,6 @@ int _printf(const char *format, ...)
                 if (str == NULL)
                     str = "(null)";
                 
-                /* Directly use _strlen_recursion in the loop */
                 for (int j = 0; j < _strlen_recursion(str); j++)
                 {
                     _putchar(str[j]);
