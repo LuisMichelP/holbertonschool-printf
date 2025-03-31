@@ -10,11 +10,12 @@
  *
  * Return: The number of characters printed.
  */
+
 int print_string(char *str, int count)
 {
 	if (str == NULL)
 		str = "(null)";
-		
+
 	while (*str)
 	{
 		_putchar(*str);
